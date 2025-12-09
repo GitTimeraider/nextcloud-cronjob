@@ -1,4 +1,4 @@
-# For of Nextcloud Cron Job Docker Container
+# Fork of Nextcloud Cron Job Docker Container
 
 > [!WARNING]
 > **This repository is archived and no longer maintained.** No new features, bug fixes, or security updates will be provided. Use at your own risk. Feel free to fork this project if you wish to continue development.
