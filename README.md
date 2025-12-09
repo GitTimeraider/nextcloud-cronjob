@@ -1,4 +1,5 @@
 # Nextcloud Cron Job Docker Container
+## Keep in mind that I will be maintaining this software primarily for myself (Docker in Unraid with community-edition Nextcloud) and thus might not be aware of any issues that occur outside of my scenario, nor be able to test those
 
 Simple cronjob support for your Nextcloud Docker container!
 
