@@ -6,9 +6,7 @@ This is an fork of [rcdailey/nextcloud-cronjob](https://github.com/rcdailey/next
 Most likely will simply update this, only if needed, to make it work with the latest Nextcloud version.
 
 * [GitHub Container Registry](https://github.com/GitTimeraider/nextcloud-cronjob/pkgs/container/nextcloud-cronjob)
-* [GitHub Repository](https://github.com/GitTimeraider/nextcloud-cronjob)
 
-[![Actions Status](https://github.com/GitTimeraider/nextcloud-cronjob/workflows/build/badge.svg)](https://github.com/GitTimeraider/nextcloud-cronjob/actions)
 
 ## Summary
 
