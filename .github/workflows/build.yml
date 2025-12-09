@@ -1,6 +1,12 @@
 name: build
 
-on: [push, pull_request]
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
 
 jobs:
   build:
@@ -33,4 +39,4 @@ jobs:
           # Only publish new images when building the master branch
           push: ${{ github.ref == 'refs/heads/master' }}
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/${{ github.repository_owner }}/nextcloud-cronjob:latest
+          tags: ghcr.io/${{ github.repository_owner | lowercase }}/nextcloud-cronjob:latest
