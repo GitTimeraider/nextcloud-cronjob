@@ -1,6 +1,10 @@
-FROM alpine
+FROM alpine:latest
 
-RUN apk add --no-cache docker-cli bash tini
+RUN apk add --no-cache bash tini curl && \
+    curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-27.4.1.tgz | tar xz -C /tmp && \
+    mv /tmp/docker/docker /usr/local/bin/ && \
+    rm -rf /tmp/docker && \
+    apk del curl
 
 ENV NEXTCLOUD_EXEC_USER=www-data
 ENV NEXTCLOUD_CONTAINER_NAME=
