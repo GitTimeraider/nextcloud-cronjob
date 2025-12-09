@@ -1,16 +1,14 @@
 # Nextcloud Cron Job Docker Container
 ## Keep in mind that I will be maintaining this software primarily for myself (Docker in Unraid with community-edition Nextcloud) and thus might not be aware of any issues that occur outside of my scenario, nor be able to test those
-
-Simple cronjob support for your Nextcloud Docker container!
-
 This is an fork of [rcdailey/nextcloud-cronjob](https://github.com/rcdailey/nextcloud-cronjob), which is no longer maintained.
-Most likely will simply update this, only if needed, to make it work with the latest Nextcloud version.
+Most likely will simply update this, only if needed, to make it work with the latest Nextcloud version. Updated to make use of Github for the docker image and use the latest Alpine to support newer Docker API's.
 
 * [GitHub Container Registry](https://github.com/GitTimeraider/nextcloud-cronjob/pkgs/container/nextcloud-cronjob)
 
 
 ## Summary
 
+Simple cronjob support for your Nextcloud Docker container!
 This container is designed to run along side your Nextcloud container to execute its
 `/var/www/html/cron.php` at a regular interval. There is an "official" way of doing this, however it
 doesn't work when you run your Nextcloud container using a non-root user. I also personally feel
