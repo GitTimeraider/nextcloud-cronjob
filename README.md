@@ -1,14 +1,14 @@
-# Fork of Nextcloud Cron Job Docker Container
-
-> [!WARNING]
-> **This repository is archived and no longer maintained.** No new features, bug fixes, or security updates will be provided. Use at your own risk. Feel free to fork this project if you wish to continue development.
+# Nextcloud Cron Job Docker Container
 
 Simple cronjob support for your Nextcloud Docker container!
 
-* [Docker Hub](https://hub.docker.com/r/rcdailey/nextcloud-cronjob)
-* [Github Repository](https://github.com/rcdailey/nextcloud-cronjob)
+This is an fork of [rcdailey/nextcloud-cronjob](https://github.com/rcdailey/nextcloud-cronjob), which is no longer maintained.
+Most likely will simply update this, only if needed, to make it work with the latest Nextcloud version.
 
-[![Actions Status](https://github.com/rcdailey/nextcloud-cronjob/workflows/build/badge.svg)](https://github.com/rcdailey/nextcloud-cronjob/actions)
+* [GitHub Container Registry](https://github.com/GitTimeraider/nextcloud-cronjob/pkgs/container/nextcloud-cronjob)
+* [GitHub Repository](https://github.com/GitTimeraider/nextcloud-cronjob)
+
+[![Actions Status](https://github.com/GitTimeraider/nextcloud-cronjob/workflows/build/badge.svg)](https://github.com/GitTimeraider/nextcloud-cronjob/actions)
 
 ## Summary
 
@@ -36,7 +36,7 @@ services:
     image: nextcloud:apache
 
   cron:
-    image: rcdailey/nextcloud-cronjob
+    image: ghcr.io/gittimeraider/nextcloud-cronjob:latest
     restart: always
     network_mode: none
     depends_on:
@@ -79,7 +79,7 @@ Errors you may encounter are below with proposed solutions.
 
   Older versions of the `nextcloud-cronjob` container were hard-coded to use `bash` as the shell
   program executed inside your Nextcloud container. However, some Nextcloud containers do not have
-  `bash`. Please update to the latest version of `rcdailey/nextcloud-cronjob` and follow the steps
+  `bash`. Please update to the latest version of `ghcr.io/gittimeraider/nextcloud-cronjob` and follow the steps
   provided in the previous bullet point.
 
 ## Environment Variables
@@ -157,7 +157,7 @@ in addition to the default `cron.php` task. To add your custom tasks, follow the
    ```yml
    services:
      cron:
-       image: rcdailey/nextcloud-cronjob
+       image: ghcr.io/gittimeraider/nextcloud-cronjob:latest
        volumes:
        - ./my-scripts/do-something.sh:/cron-scripts/do-something.sh:ro
    ```
@@ -172,7 +172,7 @@ also map a directory on the host to the `/cron-scripts` directory in the contain
 ```yml
 services:
   cron:
-    image: rcdailey/nextcloud-cronjob
+    image: ghcr.io/gittimeraider/nextcloud-cronjob:latest
     volumes:
     - ./my-scripts:/cron-scripts:ro
 ```
@@ -202,7 +202,7 @@ greatly simplified for example purposes; this is not a complete YAML):
 ```yml
 services:
   cron:
-    image: rcdailey/nextcloud-cronjob
+    image: ghcr.io/gittimeraider/nextcloud-cronjob:latest
     environment:
     - NEXTCLOUD_EXEC_SHELL=sh
     - NEXTCLOUD_EXEC_SHELL_ARGS=-c
@@ -242,7 +242,7 @@ example, for `bash` you can specify `-x` for debug mode. So you could use this i
 ```yml
 services:
   cron:
-    image: rcdailey/nextcloud-cronjob
+    image: ghcr.io/gittimeraider/nextcloud-cronjob:latest
     environment:
     - NEXTCLOUD_EXEC_SHELL_ARGS=-xc
 ```
