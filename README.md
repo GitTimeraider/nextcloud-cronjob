@@ -248,3 +248,5 @@ services:
 
 Note the addition of `-x` in the arguments. This will provide line-by-line output for each cron task
 shell script executed.
+
+Updating this to force an rebuild for security updates. Not a fan of automated updates with chance of breaking something without me noticing :D
