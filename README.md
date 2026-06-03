@@ -1,6 +1,8 @@
 # Nextcloud Cron Job Docker Container
 ### Updated to use Github for docker image repository and make use of newer Alpine base to work with new Docker API requirements
 ### Keep in mind that I will be maintaining this software primarily for myself (Docker in Unraid with community-edition Nextcloud) and thus might not be aware of any issues that occur outside of my scenario, nor be able to test those
+### Trying to keep this up-to-date with the latest Alpine versions and security updates unless it totally breaks it :D
+-----
 This is an fork of [rcdailey/nextcloud-cronjob](https://github.com/rcdailey/nextcloud-cronjob), which is no longer maintained.
 Most likely will simply update this, only if needed, to make it work with the latest Nextcloud version.
 If you ran the original Docker image, you can 1:1 simply change the repository. For now.
