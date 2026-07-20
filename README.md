@@ -25,42 +25,26 @@ Since Nextcloud's entire setup can get rather complex with Docker, I highly reco
 everything using [Docker Compose](https://docs.docker.com/compose/).
 
 Below is an example of how you set up your `docker-compose.yml` to work with Nextcloud using this
-container. Note that the `app` service is greatly simplified for example purposes. It is only to
-show usage of the cronjob image in conjunction with your Nextcloud container. Note for this example,
-the `docker-compose.yml` file is located at `~/docker_services/nextcloud/docker-compose.yml`.
-
+containerin Unraid. 
 ```yml
 version: '3.7'
 
 services:
-  app:
-    image: nextcloud:apache
 
   cron:
     image: ghcr.io/gittimeraider/nextcloud-cronjob:latest
     restart: always
     network_mode: none
-    depends_on:
-    - app
     volumes:
     - /var/run/docker.sock:/var/run/docker.sock:ro
     - /etc/localtime:/etc/localtime:ro
     environment:
-    - NEXTCLOUD_CONTAINER_NAME=app
-    - NEXTCLOUD_PROJECT_NAME=nextcloud
+    - NEXTCLOUD_CONTAINER_NAME=YOUR NEXTCLOUD CONTAINER NAME
+    - NEXTCLOUD_CRON_MINUTE_INTERVAL=5
+    - NEXTCLOUD_EXEC_USER=99
+    - NEXTCLOUD_EXEC_SHELL=bash
+
 ```
-
-In this example, the `cron` service runs with a dependency on `app` (which is Nextcloud itself).
-Every 15 minutes (default) the `cron` service will execute `php -f /var/www/html/cron.php` via the
-`docker exec` command. The `NEXTCLOUD_CONTAINER_NAME` and `NEXTCLOUD_PROJECT_NAME` work together to
-help identify the right container to execute the command in. In this case, my project name is
-`nextcloud` because Docker Compose uses the name of the directory containing the
-`docker-compose.yml` file to prefix the name of the image. And container name is `app` because
-that's what I named the service in the YAML file.
-
-Note that if you don't use Docker Compose, you can leave `NEXTCLOUD_PROJECT_NAME` blank or omitted
-entirely. Please see the Environment Variables section below for more details on configuration and
-how this all works.
 
 ### Troubleshooting
 
