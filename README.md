@@ -86,6 +86,13 @@ Errors you may encounter are below with proposed solutions.
 * `NEXTCLOUD_CRON_MINUTE_INTERVAL`<br>
   The interval, in minutes, of how often the cron task executes. The default is 15 minutes.
 
+* `NEXTCLOUD_RETRY_INTERVAL`<br>
+  The interval, in seconds, between attempts to find the Nextcloud container on start up. If the
+  Nextcloud container can't be found (e.g. it is still starting or temporarily down), a warning is
+  logged and the container keeps retrying instead of exiting. The default is 60 seconds. If the
+  Nextcloud container disappears later on, the affected cron runs are skipped with a warning and
+  resume automatically once it is available again.
+
 * `NEXTCLOUD_EXEC_USER`<br>
   The user that should be used to run the cron tasks inside the Nextcloud container. This parameter
   is specified to the `docker exec` command from this container. By default, the user used is

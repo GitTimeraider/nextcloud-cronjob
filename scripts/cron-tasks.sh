@@ -13,8 +13,8 @@ echo "-------------------------------------------------------------"
 # each time.
 containerId="$(/find-container.sh)"
 if [[ -z "$containerId" ]]; then
-    echo "ERROR: Unable to find the Nextcloud container"
-    exit 1
+    echo "WARNING: Unable to find the Nextcloud container, skipping this run (will retry on next run)"
+    exit 0
 fi
 
 echo "> Nextcloud Container ID: ${containerId}"

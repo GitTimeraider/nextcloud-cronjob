@@ -17,14 +17,23 @@ else
     echo "Container Name: $NEXTCLOUD_CONTAINER_NAME"
 fi
 
-# Do an initial search for the container to rule out any configuration problems
-containerId="$(/find-container.sh)"
-if [[ -z "$containerId" ]]; then
-    echo "ERROR: Unable to find the Nextcloud container"
-    exit 1
-else
-    echo "Found Nextcloud container with ID $containerId"
+# Wait for the Nextcloud container to become available. Instead of exiting when it can't be found
+# (e.g. Nextcloud is still starting, being updated, or temporarily down), keep retrying.
+retryInterval="${NEXTCLOUD_RETRY_INTERVAL:-60}"
+if ! [[ "$retryInterval" =~ ^[0-9]+$ ]] || (( retryInterval < 1 )); then
+    echo "WARNING: Invalid NEXTCLOUD_RETRY_INTERVAL \"$retryInterval\", falling back to 60 seconds"
+    retryInterval=60
 fi
+
+while true; do
+    containerId="$(/find-container.sh || true)"
+    if [[ -n "$containerId" ]]; then
+        echo "Found Nextcloud container with ID $containerId"
+        break
+    fi
+    echo "WARNING: Unable to find the Nextcloud container, retrying in ${retryInterval}s ($(date))"
+    sleep "$retryInterval"
+done
 
 # Verify the chosen shell exists in the Nextcloud container
 if ! nextcloud_exec_no_shell "$containerId" sh -c "command -v \"$NEXTCLOUD_EXEC_SHELL\"" >/dev/null 2>&1
